@@ -1,4 +1,4 @@
-export default class Item {
+export class Item {
   constructor(descricao, quantidade, valor) {
     this.descricao = descricao.toUpperCase();
     this.quantidade = quantidade;

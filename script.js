@@ -1,4 +1,4 @@
-import Item from "./models/Item.js";
+import { Item } from "./models/Item.js";
 
 const adicionaDados = function () {
   const descInput = document.getElementById("desc");
@@ -10,11 +10,11 @@ const adicionaDados = function () {
     return;
   }
 
-  const item = Item.transformDataToItem(
-    descInput.value,
-    parseInt(qtdInput.value),
-    Number(valorInput.value),
-  );
+  const item = Item.transformDataToItem({
+    descricao: descInput.value,
+    quantidade: parseInt(qtdInput.value),
+    valor: Number(valorInput.value),
+  });
 
   listaCompras.push(item);
 
