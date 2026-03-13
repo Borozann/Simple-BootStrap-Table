@@ -1,18 +1,4 @@
-class Item {
-  constructor(descricao, quantidade, valor) {
-    this.descricao = descricao.toUpperCase();
-    this.quantidade = quantidade;
-    this.valor = valor;
-  }
-
-  get subtotal() {
-    return this.quantidade * this.valor;
-  }
-}
-
-const transformDataToItem = function (data) {
-  return new Item(data.descricao, data.quantidade, data.valor);
-};
+import Item from "./models/Item.js";
 
 const adicionaDados = function () {
   const descInput = document.getElementById("desc");
@@ -24,7 +10,7 @@ const adicionaDados = function () {
     return;
   }
 
-  const item = new Item(
+  const item = Item.transformDataToItem(
     descInput.value,
     parseInt(qtdInput.value),
     Number(valorInput.value),
@@ -113,6 +99,11 @@ const buscarLocalStorage = function () {
 };
 
 let listaLocal = buscarLocalStorage();
-let listaCompras = listaLocal.map((r) => transformDataToItem(r));
+let listaCompras = listaLocal.map((r) => Item.transformDataToItem(r));
+
+window.adicionaDados = adicionaDados;
+window.limparInput = limparInput;
+window.deletaLista = deletaLista;
+window.removerItem = removerItem;
 
 carregarTabela();
